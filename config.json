@@ -1,0 +1,27 @@
+{
+	"name": "Remove Empty Choice",
+	"description": "Action tag <code>@REMOVE-EMPTY-CHOICE</code> for dropdown list fields that removes the default, empty option, effectively making the first option the default choice. Applies to SQL fields, and is hence useful for selecting a single option returned. The tag is ignored for all other field types, or where the \"auto-complete\" option is selected.",
+	"namespace": "MCRI\\RemoveEmptyChoice",
+	"authors": [
+		{
+			"name": "Luke Stevens",
+			"email": "luke.stevens@mcri.edu.au",
+			"institution": "Murdoch Children's Research Institute"
+		}
+	],
+    "framework-version": 14,
+    "action-tags": [
+        {
+            "tag": "@REMOVE-EMPTY-CHOICE",
+            "description": "Tag for dropdown list and SQL fields that removes the default, empty list option, effectively making the first option the default choice. Applies to SQL fields, and is hence useful for selecting a single option returned. The tag is ignored for all other field types, or where the \"auto-complete\" option is selected."
+        }
+    ],
+	"system-settings": [ ],
+	"project-settings": [
+        {
+            "key": "tag-desc",
+            "name": "<code>@REMOVE-EMPTY-CHOICE</code> action tag for dropdown list and SQL fields that removes the default, empty list option, effectively making the first option the default choice. Applies to SQL fields, and is hence useful for selecting a single option returned. The tag is ignored for all other field types, or where the \"auto-complete\" option is selected.",
+            "type": "descriptive"
+        }
+     ]
+}
