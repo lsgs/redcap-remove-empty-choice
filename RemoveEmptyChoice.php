@@ -40,7 +40,11 @@ class RemoveEmptyChoice extends AbstractExternalModule
                 module.taggedFields = JSON.parse('<?=json_encode($this->taggedFields)?>');
                 module.init = function() {
                     module.taggedFields.forEach(fldName => {
-                        $('select[name='+fldName+'] option:first').remove();
+                        let tf = $('select[name='+fldName+']');
+                        if ($(tf).val()=='') {
+                            $(tf).prop('selectedIndex', 1).trigger('change');
+                        }
+                        $(tf).find('option:first').remove();
                     });
                 };
                 $(document).ready(function(){
