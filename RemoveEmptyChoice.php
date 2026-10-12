@@ -11,18 +11,30 @@ class RemoveEmptyChoice extends AbstractExternalModule
 {
     const ACTION_TAG = '@REMOVE-EMPTY-CHOICE';
     protected $isSurvey = false;
+    protected $project_id;
+    protected $record;
     protected $instrument;
+    protected $event_id;
+    protected $instance;
     protected $taggedFields = [];
 
     public function redcap_data_entry_form_top($project_id, $record, $instrument, $event_id, $group_id, $repeat_instance) {
         $this->isSurvey = false;
+        $this->project_id = $project_id;
+        $this->record = $record;
         $this->instrument = $instrument;
+        $this->event_id = $event_id;
+        $this->instance = $repeat_instance;
         $this->pageTop();
     }
 
     public function redcap_survey_page_top($project_id, $record, $instrument, $event_id, $group_id, $survey_hash, $response_id, $repeat_instance) {
         $this->isSurvey = true;
+        $this->project_id = $project_id;
+        $this->record = $record;
         $this->instrument = $instrument;
+        $this->event_id = $event_id;
+        $this->instance = $repeat_instance;
         $this->pageTop();
     }
 
@@ -80,7 +92,9 @@ class RemoveEmptyChoice extends AbstractExternalModule
             if (!in_array($fieldDetails['field_type'], ['dropdown','sql'])) continue;
             if (!empty($fieldDetails['text_validation_type_or_show_slider_number'])) continue;
 
-            if (preg_match($pattern, $fieldDetails['field_annotation'])) {
+            $evaluatedFieldAnnotation = \Form::replaceIfActionTag($fieldDetails['field_annotation'], $this->project_id, $this->record ?? '1', $this->event_id, $this->instrument, $this->instance);
+
+            if (preg_match($pattern, $evaluatedFieldAnnotation)) {
                 $this->taggedFields[] = $this->escape($fieldName);
             }
         }

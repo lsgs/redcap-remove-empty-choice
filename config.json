@@ -9,7 +9,7 @@
 			"institution": "Murdoch Children's Research Institute"
 		}
 	],
-    "framework-version": 14,
+    "framework-version": 16,
     "action-tags": [
         {
             "tag": "@REMOVE-EMPTY-CHOICE",
